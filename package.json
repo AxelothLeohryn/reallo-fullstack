@@ -1,0 +1,28 @@
+{
+  "name": "reallo-fullstack",
+  "version": "1.0.0",
+  "description": "Reallo: a FullStack Trello Clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxelothLeohryn/reallo-fullstack.git"
+  },
+  "author": "Alejandro Sanchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AxelothLeohryn/reallo-fullstack/issues"
+  },
+  "homepage": "https://github.com/AxelothLeohryn/reallo-fullstack#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.2"
+  }
+}
