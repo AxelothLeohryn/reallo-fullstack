@@ -1,10 +1,10 @@
 const { model } = require("mongoose");
-const models = require("../models/cards.model");
+const cards = require("../models/cards.model");
 
 const getCardsByListId = async (req, res) => {
   const id = req.params.id;
   try {
-    const cards = await models.getCardsByListId(id);
+    const cards = await cards.getCardsByListId(id);
     res.status(200).json(cards);
   } catch (error) {
     res.status(400).json(error.message);
@@ -14,7 +14,7 @@ const getCardsByListId = async (req, res) => {
 const createCard = async (req, res) => {
   let cardData = req.body;
   try {
-    await models.createCard(cardData);
+    await cards.createCard(cardData);
     res.status(201).json({
       message: "Card Created!",
     });
@@ -27,7 +27,7 @@ const updateCard = async (req, res) => {
   let id = req.params.id;
   let cardData = req.body;
   try {
-    const updatedCard = await models.updateCard(id, cardData);
+    const updatedCard = await cards.updateCard(id, cardData);
     res.status(200).json({
       message: "Card updated: " + req.body.name,
       card: req.body,
@@ -40,7 +40,7 @@ const updateCard = async (req, res) => {
 const deleteCard = async (req, res) => {
   const id = req.params.id;
   try {
-    await models.deleteCard(id);
+    await cards.deleteCard(id);
     res.status(200).json({
       message: "Card deleted: " + id,
     });
