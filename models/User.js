@@ -9,18 +9,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  password_hash: {
+  password: {
     type: String,
     required: true,
   },
-//   boards: [
-//     {
-//       type: mongoose.Schema.Types.ObjectId,
-//       ref: "Board",
-//     },
-//   ],
+  logged: Boolean,
 });
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = { User };
+module.exports = User;
