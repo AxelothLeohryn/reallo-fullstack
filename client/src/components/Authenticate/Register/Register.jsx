@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -39,7 +40,7 @@ export default function Register({ toggleView, handleRegister }) {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random?catwallpapers)",
+            backgroundImage: "url(https://source.unsplash.com/random?city)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -60,7 +61,7 @@ export default function Register({ toggleView, handleRegister }) {
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
+              <AppRegistrationIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
               Sign Up

@@ -4,8 +4,12 @@
   "description": "Reallo: a FullStack Trello Clone",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon"
+    "server": "nodemon server.js",
+    "client": "npm run dev --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -19,6 +23,7 @@
   "homepage": "https://github.com/AxelothLeohryn/reallo-fullstack#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",

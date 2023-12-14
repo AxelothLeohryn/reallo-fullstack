@@ -10,6 +10,7 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import LoginIcon from '@mui/icons-material/Login';
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -61,7 +62,7 @@ export default function Login({ toggleView, handleLogin }) {
           md={7}
           sx={{
             backgroundImage:
-              "url(https://source.unsplash.com/random?catwallpaper)",
+              "url(https://source.unsplash.com/random?city)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -82,7 +83,7 @@ export default function Login({ toggleView, handleLogin }) {
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
+              <LoginIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
               Sign in

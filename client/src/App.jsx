@@ -45,14 +45,14 @@ function App() {
         password,
       });
       console.log("Registration successful", response.data);
-      toast.success(response.data.msg);
+      toast.success("Registration successful. Please log in now.");
       // Additional logic after successful registration, like redirecting to login
     } catch (error) {
       console.error(
         "Registration error:",
         error.response ? error.response.data : error
       );
-      toast.error(error.response.data.msg);
+      toast.error(error.response.data.msg || error.response.data);
       // Display or log more detailed error information
     }
   };

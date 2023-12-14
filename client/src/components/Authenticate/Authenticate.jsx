@@ -4,13 +4,13 @@ import Login from "./Login";
 import Register from "./Register";
 
 function Authenticate({ handleLogin, handleRegister }) {
-  const [isLoginView, setIsLoginView] = useState(true); // true for Login view, false for Register view
+  const [loginView, setLoginView] = useState(true); // true for Login view, false for Register view
 
-  const toggleView = () => setIsLoginView(!isLoginView);
+  const toggleView = () => setLoginView(!loginView);
 
   return (
     <div>
-      {isLoginView ? (
+      {loginView ? (
         <>
           <Login toggleView={toggleView} handleLogin={handleLogin} />
         </>
