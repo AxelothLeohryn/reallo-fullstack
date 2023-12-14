@@ -1,11 +1,11 @@
 import React from "react";
 import Nav from "./Nav";
 
-const Header = () => {
+const Header = ({handleLogout}) => {
   return (
     <header>
       Header
-      <Nav />
+      <Nav handleLogout={handleLogout}/>
     </header>
   );
 };

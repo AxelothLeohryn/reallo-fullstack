@@ -5,27 +5,25 @@ const jwt_secret = process.env.ULTRA_SECRET_KEY;
 
 const protectedRoutes = express.Router();
 
-protectedRoutes.use((req, res, next) => {
-  const token = req.headers['access_token'];
+protectedRoutes.use(async (req, res, next) => {
+  const token = req.headers['authorization']?.split(' ')[1]; // Assuming 'Bearer TOKEN'
 
-  if (token) {
-    jwt.verify(token, jwt_secret, async (err, decoded) => {
-      if (decoded) {
-        let data = await User.findOne({ "email": decoded.email }, '-_id -__v');
-        if (data.logged == true) {
-          req.decoded = decoded;
-          next();
-        } else {
-          return res.json({ msg: 'Invalid token' });
-        }
-      } else {
-        res.send({ msg: "Invalid token" });
-      }
-    });
-  } else {
-    res.send({
-      msg: 'Token not provided'
-    });
+  if (!token) {
+    return res.status(401).json({ msg: 'Token not provided' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, jwt_secret);
+    const user = await User.findOne({ email: decoded.email }, '-_id -__v');
+
+    if (!user || user.logged !== true) {
+      return res.status(401).json({ msg: 'Invalid token or user not logged in' });
+    }
+
+    req.decoded = decoded;
+    next();
+  } catch (err) {
+    res.status(403).json({ msg: 'Invalid token' });
   }
 });
 

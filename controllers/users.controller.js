@@ -46,7 +46,7 @@ const loginUser = async (req, res) => {
         };
         const token = jwt.sign(userForToken, jwt_secret, { expiresIn: "20m" });
         res.status(200).json({
-          msg: "Correct authentication",
+          msg: "Logged in",
           token: token,
         });
       } else {
@@ -125,13 +125,11 @@ const resetPassword = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  let data;
   try {
-    data = await User.updateOne(
-      { email: req.params.email },
-      { logged: false }
-    );
-    res.status(200).json({ message: "Token deleted" });
+    // req.decoded comes from protectedRoute (verifiedToken.js) middleware
+    const email = req.decoded.email;
+    await User.updateOne({ email }, { logged: false });
+    res.status(200).json({ message: "Successfully logged out" });
   } catch (error) {
     console.log("Error:", error);
     res.status(400).json(error.message);

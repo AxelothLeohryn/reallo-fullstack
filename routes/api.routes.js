@@ -16,7 +16,7 @@ router.post("/users", usersController.createUser);   //Create user (for register
 
 //---Boards
 router.get("/users/:id/boards", boardsController.getBoardsByUserId);   //Obtain boards of user
-// router.get("/boards/:id", boardsController.getBoard);
+// router.get("/boards/:id", boardsController.getBoard); // Get a board by id
 router.post("/boards", boardsController.createBoard);   //Create board
 router.put("/boards/:id", boardsController.updateBoard);  //Update board
 router.delete("/boards/:id", boardsController.deleteBoard);  //Delete board
