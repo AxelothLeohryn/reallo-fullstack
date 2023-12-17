@@ -1,0 +1,12 @@
+@import "../utils/variables.scss";
+@import "../utils/mixins.scss";
+
+.board-item {
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 16px;
+}
+.board-item:hover {
+    transform: scale(1.05);
+}

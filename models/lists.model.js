@@ -7,6 +7,16 @@ async function getListsByBoardId(id) {
   return lists;
 }
 
+async function getListById(id) {
+  try {
+    const list = await model.List.findById(id).exec();
+    return list; // This will be null if no list is found
+  } catch (error) {
+    // Handle any errors that occur during the query
+    throw error;
+  }
+}
+
 async function createList(listData) {
   const { name, board_id } = listData;
   const list = new model.List({
@@ -34,6 +44,7 @@ async function deleteList(id) {
 
 module.exports = {
   getListsByBoardId,
+  getListById,
   createList,
   updateList,
   deleteList,

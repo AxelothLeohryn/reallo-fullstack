@@ -7,6 +7,17 @@ async function getCardsByListId(id) {
   return cards;
 }
 
+async function getCardById(id) {
+  try {
+    const card = await model.Card.findById(id).exec();
+    return card; // This will be null if no card is found
+  } catch (error) {
+    // Handle any errors that occur during the query
+    throw error;
+  }
+}
+
+
 async function createCard(cardData) {
   const { name, description, list_id } = cardData; //Add more features to the card...
   const card = new model.Card({
@@ -35,6 +46,7 @@ async function deleteCard(id) {
 
 module.exports = {
   getCardsByListId,
+  getCardById,
   createCard,
   updateCard,
   deleteCard

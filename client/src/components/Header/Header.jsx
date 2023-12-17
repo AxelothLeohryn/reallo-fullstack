@@ -4,7 +4,6 @@ import Nav from "./Nav";
 const Header = ({handleLogout}) => {
   return (
     <header>
-      Header
       <Nav handleLogout={handleLogout}/>
     </header>
   );

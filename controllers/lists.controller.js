@@ -4,10 +4,23 @@ const lists = require("../models/lists.model");
 const getListsByBoardId = async (req, res) => {
   const id = req.params.id;
   try {
-    const lists = await lists.getListsByBoardId(id);
-    res.status(200).json(lists);
+    const listsData = await lists.getListsByBoardId(id);
+    res.status(200).json(listsData);
   } catch (error) {
     res.status(400).json(error.message);
+  }
+};
+const getList = async (req, res) => {
+  const listId = req.params.id;
+  try {
+      const list = await lists.getListById(listId);
+      if (list) {
+          res.status(200).json(list);
+      } else {
+          res.status(404).json({ message: "List not found" });
+      }
+  } catch (error) {
+      res.status(500).json({ message: error.message });
   }
 };
 
@@ -51,6 +64,7 @@ const deleteList = async (req, res) => {
 
 module.exports = {
   getListsByBoardId,
+  getList,
   createList,
   updateList,
   deleteList,

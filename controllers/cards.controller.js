@@ -4,10 +4,23 @@ const cards = require("../models/cards.model");
 const getCardsByListId = async (req, res) => {
   const id = req.params.id;
   try {
-    const cards = await cards.getCardsByListId(id);
-    res.status(200).json(cards);
+    const cardsData = await cards.getCardsByListId(id);
+    res.status(200).json(cardsData);
   } catch (error) {
     res.status(400).json(error.message);
+  }
+};
+const getCard = async (req, res) => {
+  const cardId = req.params.id;
+  try {
+      const card = await cards.getCardById(cardId);
+      if (card) {
+          res.status(200).json(card);
+      } else {
+          res.status(404).json({ message: "Card not found" });
+      }
+  } catch (error) {
+      res.status(500).json({ message: error.message });
   }
 };
 
@@ -51,6 +64,7 @@ const deleteCard = async (req, res) => {
 
 module.exports = {
   getCardsByListId,
+  getCard,
   createCard,
   updateCard,
   deleteCard,
