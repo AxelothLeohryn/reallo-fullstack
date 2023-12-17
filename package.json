@@ -4,12 +4,14 @@
   "description": "Reallo: a FullStack Trello Clone",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm run dev --prefix client",
+    "client": "npm start --prefix client",
     "clientinstall": "npm install --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "feed_db":"node seed/seeds.js",
+    "deploy":"concurrently \"npm run server\" \"npm run client\"",
+    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
