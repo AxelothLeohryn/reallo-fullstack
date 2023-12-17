@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
 import BoardItem from "./BoardItem";
 import CreateBoardForm from "./CreateBoardForm";
 import EditBoardForm from "./EditBoardForm";
@@ -116,15 +117,17 @@ const BoardComponent = () => {
   };
 
   return (
-    <>
+    <section id="boards-page">
+      <h1>My Boards</h1>
       {isLoading ? (
         <div>Loading...</div> //LOADING SPINNER...
       ) : (
         <section className="board-list">
           {boards.length > 0 ? printBoardItems() : null}
-          <button onClick={() => setShowCreateForm(true)}>
-            Create New Board
-          </button>
+          <section className="create-board-button">
+            <AddIcon onClick={() => setShowCreateForm(true)} />
+            <h3>New Board</h3>
+          </section>
           {showCreateForm && (
             <CreateBoardForm
               onCreate={editingBoard ? handleUpdate : handleCreate}
@@ -140,7 +143,7 @@ const BoardComponent = () => {
           )}
         </section>
       )}
-    </>
+    </section>
   );
 };
 

@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import { useNavigate } from "react-router-dom";
 
 const BoardItem = ({ board, onDelete, onEdit }) => {
@@ -27,12 +30,8 @@ const BoardItem = ({ board, onDelete, onEdit }) => {
       <article className="board-item" onClick={handleClick}>
         <h2>{board.name}</h2>
         <h3>{board.description}</h3>
-        <button className="board-item-edit" onClick={handleEdit}>
-          Edit
-        </button>
-        <button className="board-item-delete" onClick={handleDelete}>
-          Delete
-        </button>
+        <EditIcon className="board-item-edit" onClick={handleEdit} />
+        <DeleteIcon className="board-item-delete" onClick={handleDelete} />
       </article>
     </>
   );
