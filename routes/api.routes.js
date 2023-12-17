@@ -37,4 +37,6 @@ router.post("/cards", cardsController.createCard); //Create card
 router.put("/cards/:id", cardsController.updateCard); //Update card
 router.delete("/cards/:id", cardsController.deleteCard); //Delete card
 
+router.put("/cards/:id/move", cardsController.moveCard); // Route to handle moving a card
+
 module.exports = router;

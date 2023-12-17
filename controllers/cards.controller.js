@@ -62,10 +62,22 @@ const deleteCard = async (req, res) => {
   }
 };
 
+const moveCard = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { newListId, newOrder } = req.body;
+    await cards.moveCard(id, newListId, newOrder);
+    res.status(200).json({ message: 'Card moved successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
   getCardsByListId,
   getCard,
   createCard,
   updateCard,
   deleteCard,
+  moveCard
 };

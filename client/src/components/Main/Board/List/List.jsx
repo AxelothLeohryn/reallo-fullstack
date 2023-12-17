@@ -3,8 +3,11 @@ import axios from "axios";
 import Card from "./Card";
 import CreateCardForm from "./CreateCardForm";
 
+import { Droppable, Draggable } from "react-beautiful-dnd";
+
 const List = ({ list, onUpdateList, onDeleteList }) => {
   const [refreshCards, setRefreshCards] = useState(false);
+  const [cardsDataReady, setCardsDataReady] = useState(false);
   //List edition
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(list.name);
@@ -20,6 +23,7 @@ const List = ({ list, onUpdateList, onDeleteList }) => {
           if (response.data.length > 0) {
             setCards(response.data);
             setRefreshCards(false);
+            setCardsDataReady(true);
           }
         } catch (error) {
           console.error("Error fetching cards:", error);
@@ -50,6 +54,7 @@ const List = ({ list, onUpdateList, onDeleteList }) => {
     try {
       const fullCardData = { ...cardData, list_id: list._id };
       const response = await axios.post(`/api/cards`, fullCardData);
+      setCardsDataReady(false);
       setCards([...cards, response.data]);
       setShowAddCardForm(false);
       setRefreshCards(true);
@@ -64,6 +69,7 @@ const List = ({ list, onUpdateList, onDeleteList }) => {
       setCards(
         cards.map((card) => (card._id === cardId ? response.data : card))
       );
+      setCardsDataReady(false);
       setRefreshCards(true);
     } catch (error) {
       console.error("Error updating card:", error);
@@ -81,7 +87,6 @@ const List = ({ list, onUpdateList, onDeleteList }) => {
       }
     }
   };
-  
 
   return (
     <div className="list">
@@ -101,9 +106,36 @@ const List = ({ list, onUpdateList, onDeleteList }) => {
         )}
       </section>
       <section className="list-cards">
-        {cards.map((card) => (
-          <Card key={card._id} card={card} onUpdateCard={handleUpdateCard} onDeleteCard={handleDeleteCard}/>
-        ))}
+        <Droppable droppableId={list._id.toString()}>
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {cardsDataReady
+                ? cards.map((card, index) => (
+                    <Draggable
+                      key={card._id}
+                      draggableId={card._id.toString()}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <Card
+                            card={card}
+                            onUpdateCard={handleUpdateCard}
+                            onDeleteCard={handleDeleteCard}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))
+                : null}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
         {showAddCardForm ? (
           <CreateCardForm
             onCardCreate={handleCreateCard}
