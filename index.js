@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const path = require("path");
 
 const app = express();
-const port = 5000;
+const PORT = process.env.PORT || 5000;
 require("./config/mongo_atlas.js"); //BBDD MongoDB conection
 
 app.use(express.json());
@@ -22,9 +22,6 @@ app.use("/api", apiRoutes);
 app.use("/user", userRoutes);
 
 //Non existing routes
-//Capture All 404 errors
-const errors = require("./middlewares/errors");
-app.use(errors.error404);
 
 
 //* Serve static assets in production, must be at this location of this file
@@ -35,6 +32,6 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build','index.html')));
 }
 
-app.listen(port, () => {
-  console.log(`Reallo Backend listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Reallo Backend listening on PORT ${PORT}`);
 });
