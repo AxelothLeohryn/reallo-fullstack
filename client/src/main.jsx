@@ -8,9 +8,9 @@ import "../node_modules/modern-normalize/modern-normalize.css";
 import "../src/styles/styles.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
