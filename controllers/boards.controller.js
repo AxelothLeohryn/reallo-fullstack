@@ -4,12 +4,27 @@ const boards = require("../models/boards.model");
 const getBoardsByUserId = async (req, res) => {
   const id = req.params.id;
   try {
-    const boards = await boards.getBoardsByUserId(id);
-    res.status(200).json(boards);
+    const userBoards = await boards.getBoardsByUserId(id);
+    res.status(200).json(userBoards);
   } catch (error) {
     res.status(500).json(error.message);
   }
 };
+
+const getBoard = async (req, res) => {
+  const boardId = req.params.id;
+  try {
+    const board = await boards.getBoardById(boardId);
+    if (board) {
+      res.status(200).json(board);
+    } else {
+      res.status(404).json({ message: "Board not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 const createBoard = async (req, res) => {
   // console.log(req.params);
@@ -52,6 +67,7 @@ const deleteBoard = async (req, res) => {
 
 module.exports = {
   getBoardsByUserId,
+  getBoard,
   createBoard,
   updateBoard,
   deleteBoard,

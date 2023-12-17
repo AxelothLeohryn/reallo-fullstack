@@ -10,9 +10,13 @@ const urlRecoverPassword = process.env.URL_RECOVER;
 const saltRounds = 10;
 
 // api/users -------------------------------------------------
-const getUserById = async (req, res) => {
-  const user = await users.getUserById(req.params.id);
-  res.status(200).json(user);
+const getUserId = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
 };
 
 const createUser = async (req, res) => {
@@ -44,8 +48,8 @@ const loginUser = async (req, res) => {
           email: email,
           username: username,
         };
-        const token = jwt.sign(userForToken, jwt_secret, { expiresIn: "20m" });
-        res.status(200).json({
+        const token = jwt.sign(userForToken, jwt_secret);
+        res.cookie("email", email).status(200).json({
           msg: "Logged in",
           token: token,
         });
@@ -137,7 +141,7 @@ const logout = async (req, res) => {
 };
 
 module.exports = {
-  getUserById,
+  getUserId,
   createUser,
   loginUser,
   signUpUser,
