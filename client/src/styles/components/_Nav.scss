@@ -1,0 +1,18 @@
+@import "../utils/variables.scss";
+@import "../utils/mixins.scss";
+
+nav {
+  @include flex-row;
+  height: 56px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#logout-button {
+  cursor: pointer;
+  padding: 14px;
+}
+#logout-button:hover {
+  background-color: gray;
+}

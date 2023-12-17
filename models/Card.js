@@ -12,6 +12,11 @@ const cardSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "List",
   },
+  order: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   //Add more features to the Card...
 });
 

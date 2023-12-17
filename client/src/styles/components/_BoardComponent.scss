@@ -1,0 +1,7 @@
+@import "../utils/variables.scss";
+@import "../utils/mixins.scss";
+
+.board-list {
+    @include flex-row;
+    gap: 10px;
+}

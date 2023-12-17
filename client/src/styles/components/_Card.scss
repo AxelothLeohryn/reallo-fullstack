@@ -1,0 +1,33 @@
+@import "../utils/variables.scss";
+@import "../utils/mixins.scss";
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+  transition: all 0.25s ease-in;
+}
+
+.card-header {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.card-content {
+  overflow: hidden;
+  transition: all 0.25s ease-in;
+  margin: 16px;
+//   background-color: gray;
+}
+
+.hidden {
+  max-height: 0;
+  padding: 0 10px;
+  opacity: 0;
+}
+
+.visible { /* Adjust as needed */
+  opacity: 1;
+  padding: 0 10px;
+}

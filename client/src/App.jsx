@@ -7,11 +7,13 @@ axios.defaults.baseURL = "http://localhost:5000";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
+import { useNavigate } from "react-router-dom";
 import Authenticate from "./components/Authenticate";
 // import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -22,11 +24,13 @@ function App() {
 
   const handleLogin = async (email, password) => {
     try {
-      const response = await axios.post("user/login", { email, password });
+      const response = await axios.post("/user/login", { email, password });
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("email", email);
       setIsLoggedIn(true);
       console.log("Login successful!", response.data);
       toast.success(response.data.msg);
+      navigate(`/`);
     } catch (error) {
       // Error Popups FRONT here ...
       console.error(
@@ -78,7 +82,7 @@ function App() {
     } catch (error) {
       // Error Popups FRONT here ...
       console.error("Logout error:", error);
-      toast.error(error.response.data.msg);
+      // toast.error(error.response.data.msg || error.response);
     }
   };
 

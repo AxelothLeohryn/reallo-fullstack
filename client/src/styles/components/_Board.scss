@@ -1,0 +1,21 @@
+@import "../utils/variables.scss";
+@import "../utils/mixins.scss";
+
+.board-header {
+    @include flex-row;
+    justify-content: start;
+    padding-left: 56px;
+    gap: 56px;
+    width: 100%;
+    background-color: rgb(85, 85, 85);
+}
+
+.board-lists {
+    @include flex-row;
+    align-items: start;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 56px;
+    padding: 56px;
+    width: 100%;
+}

@@ -13,6 +13,7 @@ protectedRoutes.use(async (req, res, next) => {
   }
 
   try {
+    console.log("trying");
     const decoded = jwt.verify(token, jwt_secret);
     const user = await User.findOne({ email: decoded.email }, '-_id -__v');
 
@@ -23,7 +24,9 @@ protectedRoutes.use(async (req, res, next) => {
     req.decoded = decoded;
     next();
   } catch (err) {
-    res.status(403).json({ msg: 'Invalid token' });
+    res.status(403).json({ msg: 'Invalid token',
+  message: err.message });
+    // res.redirect("/")
   }
 });
 

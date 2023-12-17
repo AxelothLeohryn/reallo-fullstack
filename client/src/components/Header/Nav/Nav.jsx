@@ -1,10 +1,17 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Nav = ({ handleLogout }) => {
   return (
     <nav>
-      Nav
-      <button onClick={handleLogout}>Logout</button>
+      <h1>Reallo</h1>
+      <NavLink
+          to="/"
+          className={"nav-link"}
+        >
+          My Boards
+        </NavLink>
+      <h2 id="logout-button" onClick={handleLogout}>Logout</h2>
     </nav>
   );
 };
