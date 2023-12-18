@@ -8,6 +8,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 require("./config/mongo_atlas.js"); //BBDD MongoDB conection
 
+//Docs
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());

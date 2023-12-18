@@ -1,0 +1,351 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Reallo API",
+    "description": "Reallo - A fullstack Trello Clone built with React, ExpressJS and MongoDB.\n\n\n- [Reallo Website](https://reallo-fullstack.onrender.com/)",
+    "version": "1.0.11"
+  },
+  "paths": {
+    "/users/{id}/boards": {
+      "get": {
+        "tags": ["Boards"],
+        "summary": "Obtain boards of a specific user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of boards for the user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "user_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/boards/{id}": {
+      "get": {
+        "tags": ["Boards"],
+        "summary": "Get a board by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Board ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Board data retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Board not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Boards"],
+        "summary": "Update board",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Board ID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Board updated successfully"
+          },
+          "404": {
+            "description": "Board not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Boards"],
+        "summary": "Delete board",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Board ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Board deleted successfully"
+          },
+          "404": {
+            "description": "Board not found"
+          }
+        }
+      }
+    },
+    "/boards": {
+      "post": {
+        "tags": ["Boards"],
+        "summary": "Create a new board",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "user_id": {
+                    "type": "string"
+                  }
+                },
+                "required": ["name", "description", "user_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Board created successfully"
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    
+    },
+    "/boards/{boardId}/lists": {
+        "get": {
+          "summary": "Get Lists of a Board",
+          "tags": ["Lists"],
+          "parameters": [
+            {
+              "name": "boardId",
+              "in": "path",
+              "required": true,
+              "description": "Unique ID of the board",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A list of lists belonging to the board",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/List"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Board not found"
+            }
+          }
+        }
+      },
+      "/lists/{listId}": {
+        "get": {
+          "summary": "Get a Specific List",
+          "tags": ["Lists"],
+          "parameters": [
+            {
+              "name": "listId",
+              "in": "path",
+              "required": true,
+              "description": "Unique ID of the list",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Details of the specified list",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/List"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "List not found"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update a Specific List",
+          "tags": ["Lists"],
+          "parameters": [
+            {
+              "name": "listId",
+              "in": "path",
+              "required": true,
+              "description": "Unique ID of the list to update",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "List data to update",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/List"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "List updated successfully"
+            },
+            "404": {
+              "description": "List not found"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete a Specific List",
+          "tags": ["Lists"],
+          "parameters": [
+            {
+              "name": "listId",
+              "in": "path",
+              "required": true,
+              "description": "Unique ID of the list to delete",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "List deleted successfully"
+            },
+            "404": {
+              "description": "List not found"
+            }
+          }
+        }
+      },
+      "/lists": {
+        "post": {
+          "summary": "Create a New List",
+          "tags": ["Lists"],
+          "requestBody": {
+            "description": "Data for the new list",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/List"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "List created successfully"
+            }
+          }
+        }
+      }
+    }
+  }
+
