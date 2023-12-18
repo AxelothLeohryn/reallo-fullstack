@@ -6,7 +6,10 @@ const EditCardForm = ({ card, onCardUpdate, onCancel }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCardUpdate(card._id, { name: editedName, description: editedDescription });
+    onCardUpdate(card._id, {
+      name: editedName,
+      description: editedDescription,
+    });
   };
 
   return (
@@ -22,8 +25,12 @@ const EditCardForm = ({ card, onCardUpdate, onCancel }) => {
         onChange={(e) => setEditedDescription(e.target.value)}
         placeholder="Description"
       />
-      <button type="submit">Update Card</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
+      <div className="card-edit-buttons">
+        <button type="submit">Update</button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };

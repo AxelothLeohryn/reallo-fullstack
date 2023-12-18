@@ -1,8 +1,13 @@
 @import "../utils/variables.scss";
 @import "../utils/mixins.scss";
 
+header {
+  position: sticky;
+  top: 0px;
+}
 nav {
   @include flex-row;
+
   height: 56px;
   align-items: center;
   justify-content: space-between;
@@ -38,8 +43,8 @@ nav {
   transition: 0.1s ease-in;
 }
 #logout-button:hover {
-//   background-color: $light-blue;
+  //   background-color: $light-blue;
   color: $red;
-//   transform: scale(1.05);
+  //   transform: scale(1.05);
   transition: 0.1s ease-in;
 }

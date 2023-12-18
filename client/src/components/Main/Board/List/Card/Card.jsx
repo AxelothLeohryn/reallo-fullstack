@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import EditCardForm from "../EditCardForm";
 
 const Card = ({ card, onUpdateCard, onDeleteCard }) => {
@@ -15,24 +17,30 @@ const Card = ({ card, onUpdateCard, onDeleteCard }) => {
   };
 
   return (
-    <div className="card">
-      <div className="card-header" onClick={toggleCollapse}>
-        <h3>{card.name}</h3>
-        <button onClick={() => setIsEditing(true)}>Edit</button>
-        <button onClick={() => onDeleteCard(card._id)}>Delete</button>
-      </div>
+    <article className="card">
       {isEditing ? (
-        <EditCardForm
-          card={card}
-          onCardUpdate={handleUpdate}
-          onCancel={() => setIsEditing(false)}
-        />
+        <>
+          <section className="card-edit">
+            <EditCardForm
+              card={card}
+              onCardUpdate={handleUpdate}
+              onCancel={() => setIsEditing(false)}
+            />
+          </section>
+        </>
       ) : (
-        <p className={`card-content ${isCollapsed ? "hidden" : "visible"}`}>
-          {card.description}
-        </p>
+        <>
+          <div className="card-header" onClick={toggleCollapse}>
+            <DeleteIcon onClick={() => onDeleteCard(card._id)} />
+            <h3>{card.name}</h3>
+            <EditIcon onClick={() => setIsEditing(true)} />
+          </div>
+          <p className={`card-content ${isCollapsed ? "hidden" : "visible"}`}>
+            {card.description}
+          </p>
+        </>
       )}
-    </div>
+    </article>
   );
 };
 

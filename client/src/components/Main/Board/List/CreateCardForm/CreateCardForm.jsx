@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 const CreateCardForm = ({ onCardCreate, onCancel, listId }) => {
-  const [cardName, setCardName] = useState('');
-  const [cardDescription, setCardDescription] = useState('');
+  const [cardName, setCardName] = useState("");
+  const [cardDescription, setCardDescription] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onCardCreate(listId, { name: cardName, description: cardDescription });
-    setCardName('');
-    setCardDescription('');
+    setCardName("");
+    setCardDescription("");
   };
 
   return (
@@ -24,8 +24,12 @@ const CreateCardForm = ({ onCardCreate, onCancel, listId }) => {
         value={cardDescription}
         onChange={(e) => setCardDescription(e.target.value)}
       />
-      <button type="submit">Create Card</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
+      <div className="create-card-buttons">
+        <button type="submit">Create</button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };

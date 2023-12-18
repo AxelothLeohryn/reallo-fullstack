@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { DragDropContext } from "react-beautiful-dnd";
@@ -142,14 +143,16 @@ const Board = () => {
                 />
               ))
             : null}
-          <button onClick={() => setShowCreateListForm(true)}>
-            Create New List
-          </button>
-          {showCreateListForm && (
+          {showCreateListForm ? (
             <CreateListForm
               onListCreate={handleCreateList}
               onCancel={() => setShowCreateListForm(false)}
             />
+          ) : (
+            <section className="create-list-button" onClick={() => setShowCreateListForm(true)}>
+              <AddIcon  />
+              <h2>Create New List</h2>
+            </section>
           )}
         </section>
       </DragDropContext>
