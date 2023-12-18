@@ -11,7 +11,7 @@ const Nav = ({ handleLogout }) => {
         >
           My Boards
         </NavLink>
-      <h2 id="logout-button" onClick={handleLogout}>Logout</h2>
+      <h3 id="logout-button" onClick={handleLogout}>Logout</h3>
     </nav>
   );
 };

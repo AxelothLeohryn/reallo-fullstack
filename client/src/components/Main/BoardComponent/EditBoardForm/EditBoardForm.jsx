@@ -11,7 +11,8 @@ const EditBoardForm = ({ board, onEdit, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="edit-board">
+      <h2>Edit board {board.name}</h2>
       <input
         type="text"
         placeholder="Board Name"

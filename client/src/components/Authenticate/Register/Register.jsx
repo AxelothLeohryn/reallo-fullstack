@@ -8,22 +8,23 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const defaultTheme = createTheme();
 
-export default function Register({ toggleView, handleRegister }) {
+export default function Register({ handleRegister, switchToLogin }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const username = data.get('username');
-    const email = data.get('email');
-    const password = data.get('password');
+    const username = data.get("username");
+    const email = data.get("email");
+    const password = data.get("password");
 
     try {
       await handleRegister(username, email, password);
+      switchToLogin();
     } catch (error) {
       console.error("Registration error:", error);
       // Handle registration errors
@@ -110,7 +111,7 @@ export default function Register({ toggleView, handleRegister }) {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link href="#" variant="body2" onClick={toggleView}>
+                  <Link href="/login" variant="body2">
                     {"Already have an account? Sign In"}
                   </Link>
                 </Grid>

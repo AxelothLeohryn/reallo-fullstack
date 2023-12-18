@@ -10,7 +10,8 @@ const CreateBoardForm = ({ board, onCreate, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="create-board">
+      <h3>Create a new Board</h3>
       <input
         type="text"
         placeholder="Board Name"
@@ -23,8 +24,10 @@ const CreateBoardForm = ({ board, onCreate, onCancel }) => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button type="submit">Create</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
+      <div className="create-board-buttons">
+      <button className="create-board-button-create" type="submit">Create</button>
+      <button className="create-board-button-cancel" type="button" onClick={onCancel}>Cancel</button>
+      </div>
     </form>
   );
 };

@@ -2,12 +2,17 @@ require("dotenv").config();
 const express = require("express");
 var cors = require("cors");
 const morgan = require("morgan");
-//cors
 const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 require("./config/mongo_atlas.js"); //BBDD MongoDB conection
+
+//Docs
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,8 +25,6 @@ const userRoutes = require("./routes/user.routes.js");
 
 app.use("/api", apiRoutes);
 app.use("/user", userRoutes);
-
-//Non existing routes
 
 
 //* Serve static assets in production, must be at this location of this file
