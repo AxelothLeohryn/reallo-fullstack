@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 import axios from "axios";
-// axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "http://localhost:5000";
 
 import Header from "./components/Header";
 import Main from "./components/Main";
@@ -86,6 +86,16 @@ function App() {
     }
   };
 
+  const handleRecover = async (email) => {
+    try {
+      const response = await axios.get(`/user/recoverpassword/${email}`);
+      console.log("Login successful!", response.data);
+      toast.success(response.data.message);
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
+  };
+
   return (
     <>
       {isLoggedIn ? (
@@ -98,6 +108,7 @@ function App() {
         <Authenticate
           handleLogin={handleLogin}
           handleRegister={handleRegister}
+          handleRecover={handleRecover}
         />
       )}
       <Toaster position="top-right" />

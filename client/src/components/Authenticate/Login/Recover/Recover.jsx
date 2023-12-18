@@ -5,52 +5,50 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import PasswordIcon from '@mui/icons-material/Password';
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import LoginIcon from '@mui/icons-material/Login';
+import LoginIcon from "@mui/icons-material/Login";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Reallo
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+const Recover = ({ handleRecover }) => {
+  function Copyright(props) {
+    return (
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        align="center"
+        {...props}
+      >
+        {"Copyright © "}
+        <Link color="inherit" href="https://mui.com/">
+          Reallo
+        </Link>{" "}
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
+    );
+  }
 
-const defaultTheme = createTheme();
-
-export default function Login({ handleLogin }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
-    const password = data.get("password");
 
     try {
-      await handleLogin(email, password);
+      await handleRecover(email);
       // console.log("Login successful");
       // Additional logic after successful login (if needed)
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("Recover error:", error);
       // Handle login errors (e.g., show error message)
     }
   };
-
+  const defaultTheme = createTheme();
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -61,8 +59,7 @@ export default function Login({ handleLogin }) {
           sm={4}
           md={7}
           sx={{
-            backgroundImage:
-              "url(https://source.unsplash.com/random?city)",
+            backgroundImage: "url(https://source.unsplash.com/random?city)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -83,10 +80,10 @@ export default function Login({ handleLogin }) {
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LoginIcon />
+              <PasswordIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Recover Password
             </Typography>
             <Box
               component="form"
@@ -104,37 +101,23 @@ export default function Login({ handleLogin }) {
                 autoComplete="email"
                 autoFocus
               />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
+              
               {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          /> */}
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Send Email
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="/recover" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item>
-                  <Link href="/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                  <Link href="/login" variant="body2">
+                    {"Back to login"}
                   </Link>
                 </Grid>
               </Grid>
@@ -145,4 +128,6 @@ export default function Login({ handleLogin }) {
       </Grid>
     </ThemeProvider>
   );
-}
+};
+
+export default Recover;
