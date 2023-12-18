@@ -3,7 +3,17 @@
 
 
 .list {
-    border: 1px solid black;
+    border: 1px solid $orange;
     border-radius: 5px;
-    width: 400px;
+    background-color: $dark-blue;
+    min-width: 250px;
+    max-width: 400px;
+    // @include flex-column;   
+}
+.list-cards {
+    min-height: 100px;
+    div {
+        min-height: 100px;
+        min-width: 1px;
+    }
 }

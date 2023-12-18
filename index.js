@@ -2,11 +2,10 @@ require("dotenv").config();
 const express = require("express");
 var cors = require("cors");
 const morgan = require("morgan");
-//cors
 const path = require("path");
 
 const app = express();
-const port = 5000;
+const PORT = process.env.PORT || 5000;
 require("./config/mongo_atlas.js"); //BBDD MongoDB conection
 
 app.use(express.json());
@@ -30,11 +29,11 @@ app.use(errors.error404);
 //* Serve static assets in production, must be at this location of this file
 if (process.env.NODE_ENV === 'production') {
   //*Set static folder
-  app.use(express.static('client/build'));
+  app.use(express.static('client/dist'));
   
-  app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build','index.html')));
+  app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'dist','index.html')));
 }
 
-app.listen(port, () => {
-  console.log(`Reallo Backend listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Reallo Backend listening on port ${PORT}`);
 });

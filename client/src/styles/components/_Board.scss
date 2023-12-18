@@ -14,8 +14,10 @@
     @include flex-row;
     align-items: start;
     justify-content: start;
-    flex-wrap: wrap;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
     gap: 56px;
     padding: 56px;
     width: 100%;
+    min-height: calc(100svh - 56px * 2 - 56px);
 }

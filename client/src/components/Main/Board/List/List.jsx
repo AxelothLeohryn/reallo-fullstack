@@ -106,7 +106,7 @@ const List = ({ list, onUpdateList, onDeleteList }) => {
         )}
       </section>
       <section className="list-cards">
-        <Droppable droppableId={list._id.toString()}>
+        <Droppable droppableId={list._id.toString()} isDropDisabled={false}>
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
               {cardsDataReady
