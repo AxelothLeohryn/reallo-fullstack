@@ -26,11 +26,6 @@ const userRoutes = require("./routes/user.routes.js");
 app.use("/api", apiRoutes);
 app.use("/user", userRoutes);
 
-//Non existing routes
-//Capture All 404 errors
-const errors = require("./middlewares/errors");
-// app.use(errors.error404);
-
 
 //* Serve static assets in production, must be at this location of this file
 if (process.env.NODE_ENV === 'production') {
@@ -41,5 +36,5 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(PORT, () => {
-  console.log(`Reallo Backend listening on port ${PORT}`);
+  console.log(`Reallo Backend listening on PORT ${PORT}`);
 });
