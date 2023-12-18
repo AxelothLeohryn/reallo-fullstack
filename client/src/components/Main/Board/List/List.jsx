@@ -7,7 +7,7 @@ import CreateCardForm from "./CreateCardForm";
 
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
-const List = ({ list, onUpdateList, onDeleteList }) => {
+const List = ({ list, onUpdateList, onDeleteList, onDone }) => {
   const [refreshCards, setRefreshCards] = useState(false);
   const [cardsDataReady, setCardsDataReady] = useState(false);
   //List edition

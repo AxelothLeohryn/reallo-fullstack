@@ -3,6 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { DragDropContext } from "react-beautiful-dnd";
+import Confetti from "react-confetti";
 
 import List from "./List";
 import CreateListForm from "./CreateListForm";
@@ -14,6 +15,8 @@ const Board = () => {
   const [refreshLists, setRefreshLists] = useState(false);
   const [listsDataReady, setListsDataReady] = useState(false);
   const [showCreateListForm, setShowCreateListForm] = useState(false);
+  const [confetti, setConfetti] = useState(false);
+
 
   useEffect(() => {
     const fetchBoardData = async () => {
@@ -119,6 +122,18 @@ const Board = () => {
       console.error("Error moving card:", error.message);
       // Optionally, handle the error in the UI
     }
+    if (result.destination) {
+      const destinationListId = result.destination.droppableId;
+      const destinationList = lists.find(list => list._id === destinationListId);
+      if (destinationList && destinationList.name.includes('🎉')) {
+        setConfetti(true); // Activate confetti
+
+        // Reset confetti state after 2 seconds
+        setTimeout(() => {
+          setConfetti(false);
+        }, 4000);
+      }
+    }
   };
 
   if (!board) {
@@ -149,13 +164,18 @@ const Board = () => {
               onCancel={() => setShowCreateListForm(false)}
             />
           ) : (
-            <section className="create-list-button" onClick={() => setShowCreateListForm(true)}>
-              <AddIcon  />
+            <section
+              className="create-list-button"
+              onClick={() => setShowCreateListForm(true)}
+            >
+              <AddIcon />
               <h2>Create New List</h2>
             </section>
           )}
         </section>
       </DragDropContext>
+      {confetti ? <Confetti /> : null}
+      <Confetti run={false} opacity={0}/>
     </>
   );
 };
