@@ -86,6 +86,16 @@ function App() {
     }
   };
 
+  const handleRecover = async (email) => {
+    try {
+      const response = await axios.get(`/user/recoverpassword/${email}`);
+      console.log("Login successful!", response.data);
+      toast.success(response.data.message);
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
+  };
+
   return (
     <>
       {isLoggedIn ? (
@@ -98,6 +108,7 @@ function App() {
         <Authenticate
           handleLogin={handleLogin}
           handleRegister={handleRegister}
+          handleRecover={handleRecover}
         />
       )}
       <Toaster position="top-right" />
