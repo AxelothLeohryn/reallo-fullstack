@@ -23,7 +23,7 @@ app.use("/user", userRoutes);
 //Non existing routes
 //Capture All 404 errors
 const errors = require("./middlewares/errors");
-app.use(errors.error404);
+// app.use(errors.error404);
 
 
 //* Serve static assets in production, must be at this location of this file
