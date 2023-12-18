@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const defaultTheme = createTheme();
 
-export default function Register({ toggleView, handleRegister }) {
+export default function Register({ toggleView, handleRegister, switchToLogin }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -24,6 +24,7 @@ export default function Register({ toggleView, handleRegister }) {
 
     try {
       await handleRegister(username, email, password);
+      switchToLogin();
     } catch (error) {
       console.error("Registration error:", error);
       // Handle registration errors

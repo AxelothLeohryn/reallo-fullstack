@@ -16,7 +16,7 @@ function Authenticate({ handleLogin, handleRegister }) {
         </>
       ) : (
         <>
-          <Register toggleView={toggleView} handleRegister={handleRegister}/>
+          <Register toggleView={toggleView} handleRegister={handleRegister} switchToLogin={()=>toggleView()}/>
         </>
       )}
     </div>

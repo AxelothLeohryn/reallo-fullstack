@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import Card from "./Card";
 import CreateCardForm from "./CreateCardForm";
@@ -89,24 +91,28 @@ const List = ({ list, onUpdateList, onDeleteList }) => {
   };
 
   return (
-    <div className="list">
+    <article className="list">
       <section className="list-title">
         {isEditing ? (
-          <>
+          <section className="list-edit">
             <input type="text" value={editedName} onChange={handleNameChange} />
-            <button onClick={handleSave}>Save</button>
-            <button onClick={handleCancel}>Cancel</button>
-          </>
+            <div className="list-edit-buttons">
+              <button onClick={handleSave}>Save</button>
+              <button onClick={handleCancel}>Cancel</button>
+            </div>
+          </section>
         ) : (
           <>
-            <h2>{list.name}</h2>
-            <button onClick={() => setIsEditing(true)}>Edit</button>
-            <button onClick={() => onDeleteList(list._id)}>Delete List</button>
+            <div className="list-header">
+              <DeleteIcon onClick={() => onDeleteList(list._id)} />
+              <h2>{list.name}</h2>
+              <EditIcon onClick={() => setIsEditing(true)} />
+            </div>
           </>
         )}
       </section>
       <section className="list-cards">
-        <Droppable droppableId={list._id.toString()} isDropDisabled={false}>
+        <Droppable droppableId={list._id.toString()}>
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
               {cardsDataReady
@@ -137,16 +143,26 @@ const List = ({ list, onUpdateList, onDeleteList }) => {
           )}
         </Droppable>
         {showAddCardForm ? (
-          <CreateCardForm
-            onCardCreate={handleCreateCard}
-            onCancel={() => setShowAddCardForm(false)}
-            listId={list._id}
-          />
+          <>
+          <section className="create-card">
+
+          
+            <CreateCardForm
+              onCardCreate={handleCreateCard}
+              onCancel={() => setShowAddCardForm(false)}
+              listId={list._id}
+            /></section>
+          </>
         ) : (
-          <button onClick={() => setShowAddCardForm(true)}>Add Card</button>
+          <button
+            className="add-card-button"
+            onClick={() => setShowAddCardForm(true)}
+          >
+            Add Card
+          </button>
         )}
       </section>
-    </div>
+    </article>
   );
 };
 

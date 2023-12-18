@@ -92,7 +92,7 @@ function App() {
         <>
           <Header handleLogout={handleLogout} />
           <Main />
-          <Footer />
+          {/* <Footer /> */}
         </>
       ) : (
         <Authenticate
