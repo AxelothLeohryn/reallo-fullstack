@@ -9,7 +9,6 @@ import Main from "./components/Main";
 import Footer from "./components/Footer";
 import { useNavigate } from "react-router-dom";
 import Authenticate from "./components/Authenticate";
-// import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -50,14 +49,12 @@ function App() {
       });
       console.log("Registration successful", response.data);
       toast.success("Registration successful. Please log in now.");
-      // Additional logic after successful registration, like redirecting to login
     } catch (error) {
       console.error(
         "Registration error:",
         error.response ? error.response.data : error
       );
       toast.error(error.response.data.msg || error.response.data);
-      // Display or log more detailed error information
     }
   };
 
@@ -65,7 +62,6 @@ function App() {
     try {
       // Retrieves the token from localStorage.
       const token = localStorage.getItem("token");
-      // Sends a POST request to the /logout endpoint with the JWT token in the Authorization header.
       await axios.post(
         "/user/logout",
         {},
@@ -82,7 +78,6 @@ function App() {
     } catch (error) {
       // Error Popups FRONT here ...
       console.error("Logout error:", error);
-      // toast.error(error.response.data.msg || error.response);
     }
   };
 

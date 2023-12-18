@@ -29,10 +29,9 @@ const BoardComponent = () => {
           "Error fetching boards:",
           error.response ? error.response : error
         );
-        setIsLoading(false); // Stop loading after fetching
+        setIsLoading(false); // Stop loading if error fetching (temp)
       }
     };
-
     fetchBoards();
     setRefreshBoards(false);
   }, [refreshBoards]);
@@ -48,7 +47,7 @@ const BoardComponent = () => {
         onDelete={handleDelete}
         onEdit={handleEdit}
       />
-    )); // Using board._id as key
+    ));
   };
 
   const handleCreate = async (boardData) => {
@@ -65,13 +64,11 @@ const BoardComponent = () => {
     };
     try {
       const response = await axios.post("/api/boards", newBoardData);
-      setBoards([...boards, response.data]); // Assuming response.data is the new board
-      setShowCreateForm(false); // Hide the form
+      setBoards([...boards, response.data]);
+      setShowCreateForm(false);
       setRefreshBoards(true);
-      // Handle any additional UI updates or notifications
     } catch (error) {
       console.error("Error creating board:", error);
-      // Handle error (e.g., show error message)
     }
   };
 
@@ -81,8 +78,6 @@ const BoardComponent = () => {
   };
 
   const handleUpdate = async (boardId, updatedBoardData) => {
-    console.log("Updating board with ID:", boardId); // Log board ID
-    console.log("Data:", updatedBoardData); // Log data being sent
     try {
       const response = await axios.put(
         `/api/boards/${editingBoard._id}`,
@@ -95,7 +90,7 @@ const BoardComponent = () => {
       );
       setShowEditForm(false);
       setEditingBoard(null);
-      setRefreshBoards(true); // You might want to re-fetch the boards
+      setRefreshBoards(true);
     } catch (error) {
       console.error("Error updating board:", error);
       setShowEditForm(false);
@@ -108,10 +103,8 @@ const BoardComponent = () => {
         await axios.delete(`/api/boards/${boardId}`);
         setBoards(boards.filter((board) => board._id !== boardId));
         setRefreshBoards(true);
-        // Show success message or handle UI changes
       } catch (error) {
         console.error("Error deleting board:", error);
-        // Handle error (e.g., show error message)
       }
     }
   };
@@ -124,16 +117,20 @@ const BoardComponent = () => {
       ) : (
         <section className="board-list">
           {boards.length > 0 ? printBoardItems() : null}
-          {showCreateForm ? <CreateBoardForm
+          {showCreateForm ? (
+            <CreateBoardForm
               onCreate={handleCreate}
               onCancel={() => setShowCreateForm(false)}
-            />: <section
-            className="create-board-button"
-            onClick={() => setShowCreateForm(!showCreateForm)}
-          >
-            <h2>New Board</h2>
-            <AddIcon />
-          </section>}
+            />
+          ) : (
+            <section
+              className="create-board-button"
+              onClick={() => setShowCreateForm(!showCreateForm)}
+            >
+              <h2>New Board</h2>
+              <AddIcon />
+            </section>
+          )}
           {showEditForm && editingBoard && (
             <EditBoardForm
               board={editingBoard}

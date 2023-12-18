@@ -10,9 +10,8 @@ async function getListsByBoardId(id) {
 async function getListById(id) {
   try {
     const list = await model.List.findById(id).exec();
-    return list; // This will be null if no list is found
+    return list;
   } catch (error) {
-    // Handle any errors that occur during the query
     throw error;
   }
 }
@@ -34,7 +33,6 @@ async function updateList(id, listData) {
   const updatedList = await model.List.findByIdAndUpdate(id, listData, {
     new: true,
   });
-
   return updatedList;
 }
 

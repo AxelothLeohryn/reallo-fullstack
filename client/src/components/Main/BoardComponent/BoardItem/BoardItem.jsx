@@ -12,12 +12,12 @@ const BoardItem = ({ board, onDelete, onEdit }) => {
   };
 
   const handleEdit = (event) => {
-    event.stopPropagation(); // Prevent event from bubbling up
+    event.stopPropagation(); // Used to prevent event from bubbling up (prevent onClick)
     onEdit(board);
   };
 
   const handleDelete = (event) => {
-    event.stopPropagation(); // Prevent event from bubbling up
+    event.stopPropagation(); // Prevent event from bubbling up (prevent onClick)
     onDelete(board._id);
   };
 

@@ -4,34 +4,26 @@ async function getBoardsByUserId(id) {
   const boards = await model.Board.find({
     user_id: id,
   }).exec();
-  // console.log(boards);
   return boards;
 }
 
 async function getBoardById(id) {
   try {
     const board = await model.Board.findById(id).exec();
-    return board; // This will be null if no board is found
+    return board;
   } catch (error) {
-    // Handle any errors that occur during the query
     throw error;
   }
 }
 
-
 async function createBoard(boardData) {
   const { name, description, user_id } = boardData;
-  // console.log(boardData);
   const board = new model.Board({
     name,
     description,
     user_id,
   });
   const result = await board.save();
-  console.log({
-    message: "Board created!",
-    result,
-  });
 }
 
 async function updateBoard(id, boardData) {
@@ -51,5 +43,5 @@ module.exports = {
   getBoardById,
   createBoard,
   updateBoard,
-  deleteBoard
+  deleteBoard,
 };
