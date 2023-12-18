@@ -32,7 +32,7 @@ const Card = ({ card, onUpdateCard, onDeleteCard }) => {
         <>
           <div className="card-header" onClick={toggleCollapse}>
             <DeleteIcon onClick={() => onDeleteCard(card._id)} />
-            <h3>{card.name}</h3>
+            <h4>{card.name}</h4>
             <EditIcon onClick={() => setIsEditing(true)} />
           </div>
           <p className={`card-content ${isCollapsed ? "hidden" : "visible"}`}>
