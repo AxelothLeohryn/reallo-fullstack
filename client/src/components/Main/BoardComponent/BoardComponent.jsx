@@ -124,16 +124,16 @@ const BoardComponent = () => {
       ) : (
         <section className="board-list">
           {boards.length > 0 ? printBoardItems() : null}
-          <section className="create-board-button">
-            <AddIcon onClick={() => setShowCreateForm(true)} />
-            <h3>New Board</h3>
-          </section>
-          {showCreateForm && (
-            <CreateBoardForm
-              onCreate={editingBoard ? handleUpdate : handleCreate}
+          {showCreateForm ? <CreateBoardForm
+              onCreate={handleCreate}
               onCancel={() => setShowCreateForm(false)}
-            />
-          )}
+            />: <section
+            className="create-board-button"
+            onClick={() => setShowCreateForm(!showCreateForm)}
+          >
+            <h2>New Board</h2>
+            <AddIcon />
+          </section>}
           {showEditForm && editingBoard && (
             <EditBoardForm
               board={editingBoard}

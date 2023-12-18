@@ -9,6 +9,7 @@ nav {
   width: 100%;
   padding: 16px;
   background-color: $dark-blue;
+  border-bottom: 1px solid $red;
   color: white;
   a {
     text-decoration: none;
@@ -22,9 +23,9 @@ nav {
     transition: 0.1s ease-in;
   }
   a:hover {
-    background-color: $light-blue;
-    color: black;
-    transform: scale(1.1);
+    // background-color: $light-blue;
+    color: $red;
+    // transform: scale(1.1);
     transition: 0.1s ease-in;
   }
 }
@@ -37,8 +38,8 @@ nav {
   transition: 0.1s ease-in;
 }
 #logout-button:hover {
-  background-color: $light-blue;
-  color: black;
+//   background-color: $light-blue;
+  color: $red;
 //   transform: scale(1.05);
   transition: 0.1s ease-in;
 }

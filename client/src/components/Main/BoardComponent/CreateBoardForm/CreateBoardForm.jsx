@@ -10,7 +10,8 @@ const CreateBoardForm = ({ board, onCreate, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="create-board">
+      <h2>Create a new Board</h2>
       <input
         type="text"
         placeholder="Board Name"
