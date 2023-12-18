@@ -13,6 +13,7 @@
 - **Confetti!**: Special emoji recognition that triggers a celebratory confetti animation. Try to guess a way to trigger it!
 - **Toast Notifications**: Beautiful notifications using [React Hot Toast](https://github.com/timolins/react-hot-toast).
 - **E2E Testing**: Workflow tested using Cypress.
+- **API Documentation**: API endpoints documented using Swagger.
 - **Deployment on Render**: Using a Docker container.
 
 https://reallo-fullstack.onrender.com/
@@ -37,6 +38,12 @@ Users can create multiple boards, each representing a different project or categ
 Secure and user-friendly authentication system for login and registration, using Json Web Token.
 
 ![DragAndDrop](./client/src/assets/draganddrop.png)
+
+## API Documentation
+
+API endpoints documented using Swagger.
+
+![Testing](./client/src/assets/docs.png)
 
 ## Cypress E2E Testing
 
