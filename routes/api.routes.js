@@ -11,24 +11,22 @@ const cardsController = require("../controllers/cards.controller");
 
 //Routes
 // //---Users
-router.get("/users/:email", usersController.getUserId);  //Obtain user data 
-router.post("/users", usersController.createUser);   //Create user (for register)
+router.get("/users/:email", usersController.getUserId); //Obtain user data
+router.post("/users", usersController.createUser); //Create user (for register)
 
 //---Boards
-router.get("/users/:id/boards", boardsController.getBoardsByUserId);   //Obtain boards of user
+router.get("/users/:id/boards", boardsController.getBoardsByUserId); //Obtain boards of user
 router.get("/boards/:id", boardsController.getBoard); // Get a board by id
-router.post("/boards", boardsController.createBoard);   //Create board
-router.put("/boards/:id", boardsController.updateBoard);  //Update board
-router.delete("/boards/:id", boardsController.deleteBoard);  //Delete board
-
+router.post("/boards", boardsController.createBoard); //Create board
+router.put("/boards/:id", boardsController.updateBoard); //Update board
+router.delete("/boards/:id", boardsController.deleteBoard); //Delete board
 
 // //---Lists
 router.get("/boards/:id/lists", listsController.getListsByBoardId); //Obtain lists of board
 router.get("/lists/:id", listsController.getList); //Get list by id
 router.post("/lists", listsController.createList); //Create list
-router.put("/lists/:id", listsController.updateList);  //Update list
-router.delete("/lists/:id", listsController.deleteList);  //Delete list
-
+router.put("/lists/:id", listsController.updateList); //Update list
+router.delete("/lists/:id", listsController.deleteList); //Delete list
 
 // //---Cards
 router.get("/lists/:id/cards", cardsController.getCardsByListId); //Obtain cards of list

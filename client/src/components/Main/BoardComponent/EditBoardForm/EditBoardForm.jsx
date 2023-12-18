@@ -26,7 +26,9 @@ const EditBoardForm = ({ board, onEdit, onCancel }) => {
         onChange={(e) => setDescription(e.target.value)}
       />
       <button type="submit">Update</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
+      <button type="button" onClick={onCancel}>
+        Cancel
+      </button>
     </form>
   );
 };

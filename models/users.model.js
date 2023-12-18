@@ -1,16 +1,15 @@
 const model = require("./User");
 
 async function getUserById(id) {
-    const user = await model.User.find({
-      _id: id,
-    }).exec();
-    console.log(user);
-    return user;
-  }
-  
+  const user = await model.User.find({
+    _id: id,
+  }).exec();
+  console.log(user);
+  return user;
+}
 
 async function createUser(userData) {
-    console.log(userData);
+  console.log(userData);
   const { username, email, password_hash } = userData;
   const user = new model.User({
     username,

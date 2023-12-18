@@ -12,11 +12,13 @@ const Board = () => {
   const { id } = useParams(); // Get the board ID from the URL
   const [board, setBoard] = useState(null);
   const [lists, setLists] = useState([]);
+  //State to control when to refresh the fetching of lists
   const [refreshLists, setRefreshLists] = useState(false);
+  //State to control when the lists are ready to be displayed
   const [listsDataReady, setListsDataReady] = useState(false);
   const [showCreateListForm, setShowCreateListForm] = useState(false);
+  //Show confetti easter egg
   const [confetti, setConfetti] = useState(false);
-
 
   useEffect(() => {
     const fetchBoardData = async () => {
@@ -25,10 +27,8 @@ const Board = () => {
         setBoard(response.data);
       } catch (error) {
         console.error("Error fetching board data:", error);
-        // Handle error (e.g., show error message)
       }
     };
-
     fetchBoardData();
   }, [id]);
 
@@ -41,7 +41,6 @@ const Board = () => {
         setRefreshLists(false);
       } catch (error) {
         console.error("Error fetching lists:", error);
-        // Handle error
       }
     };
 
@@ -52,15 +51,13 @@ const Board = () => {
     try {
       // Include board_id in the data sent to the server
       const fullListData = { ...listData, board_id: board._id };
-
       const response = await axios.post(`/api/lists`, fullListData);
       setListsDataReady(false);
-      setLists([...lists, response.data]); // Add the new list to the existing lists
+      setLists([...lists, response.data]);
       setShowCreateListForm(false);
       setRefreshLists(true);
     } catch (error) {
       console.error("Error creating list:", error);
-      // Optionally, handle the error in the UI
     }
   };
 
@@ -68,15 +65,12 @@ const Board = () => {
     try {
       const response = await axios.put(`/api/lists/${listId}`, updatedListData);
       setListsDataReady(false);
-      // Update the state to reflect the edited list
       setLists(
         lists.map((list) => (list._id === listId ? response.data : list))
       );
       setRefreshLists(true);
-      // You might want to add logic to close the editing mode
     } catch (error) {
       console.error("Error updating list:", error);
-      // Optionally, handle the error in the UI
     }
   };
 
@@ -87,14 +81,12 @@ const Board = () => {
         setLists(lists.filter((list) => list._id !== listId));
       } catch (error) {
         console.error("Error deleting list:", error);
-        // Optionally, handle the error in the UI
       }
     }
   };
 
   const onDragEnd = async (result) => {
     const { source, destination } = result;
-
     // Do nothing if the card is dropped outside a droppable area or dropped in the same place
     if (
       !destination ||
@@ -103,41 +95,36 @@ const Board = () => {
     ) {
       return;
     }
-
     // Prepare the data for the API call
     const newCardData = {
       newListId: destination.droppableId,
       newOrder: destination.index,
     };
-
     // API call to update the backend
     try {
       await axios.put(`/api/cards/${result.draggableId}/move`, newCardData);
-      // Update the local state to reflect the changes
-      // This may involve fetching the updated lists and cards again from the backend
-      // or manipulating the local state to reflect the new order
       setListsDataReady(false);
       setRefreshLists(true);
     } catch (error) {
       console.error("Error moving card:", error.message);
-      // Optionally, handle the error in the UI
     }
+    //Check if confetti present to show confetti for n seconds
     if (result.destination) {
       const destinationListId = result.destination.droppableId;
-      const destinationList = lists.find(list => list._id === destinationListId);
-      if (destinationList && destinationList.name.includes('🎉')) {
+      const destinationList = lists.find(
+        (list) => list._id === destinationListId
+      );
+      if (destinationList && destinationList.name.includes("🎉")) {
         setConfetti(true); // Activate confetti
-
-        // Reset confetti state after 2 seconds
         setTimeout(() => {
           setConfetti(false);
-        }, 4000);
+        }, 4000); //Duration of confetti
       }
     }
   };
 
   if (!board) {
-    return <div>Loading board...</div>; // Or any other loading state
+    return <div>Loading board...</div>;
   }
 
   return (
@@ -175,7 +162,7 @@ const Board = () => {
         </section>
       </DragDropContext>
       {confetti ? <Confetti /> : null}
-      <Confetti run={false} opacity={0}/>
+      <Confetti run={false} opacity={0} />
     </>
   );
 };

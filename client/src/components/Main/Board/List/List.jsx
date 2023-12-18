@@ -8,12 +8,14 @@ import CreateCardForm from "./CreateCardForm";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const List = ({ list, onUpdateList, onDeleteList, onDone }) => {
+  //State to control when to refresh the fetching of cards
   const [refreshCards, setRefreshCards] = useState(false);
+  //State to control when the cards are ready to be displayed
   const [cardsDataReady, setCardsDataReady] = useState(false);
-  //List edition
+  //List edit
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(list.name);
-  //Card creation
+  //Card create
   const [cards, setCards] = useState([]);
   const [showAddCardForm, setShowAddCardForm] = useState(false);
 
@@ -29,13 +31,12 @@ const List = ({ list, onUpdateList, onDeleteList, onDone }) => {
           }
         } catch (error) {
           console.error("Error fetching cards:", error);
-          // Handle error
         }
       }
     };
 
     fetchCards();
-  }, [refreshCards]); // Dependency on list._id to refetch if it changes
+  }, [refreshCards]);
 
   //Edit List
   const handleNameChange = (e) => {
@@ -62,7 +63,6 @@ const List = ({ list, onUpdateList, onDeleteList, onDone }) => {
       setRefreshCards(true);
     } catch (error) {
       console.error("Error creating card:", error);
-      // Optionally, handle the error in the UI
     }
   };
   const handleUpdateCard = async (cardId, updatedCardData) => {
@@ -75,7 +75,6 @@ const List = ({ list, onUpdateList, onDeleteList, onDone }) => {
       setRefreshCards(true);
     } catch (error) {
       console.error("Error updating card:", error);
-      // Optionally, handle the error in the UI
     }
   };
   const handleDeleteCard = async (cardId) => {
@@ -85,7 +84,6 @@ const List = ({ list, onUpdateList, onDeleteList, onDone }) => {
         setCards(cards.filter((card) => card._id !== cardId));
       } catch (error) {
         console.error("Error deleting card:", error);
-        // Optionally, handle the error in the UI
       }
     }
   };
@@ -144,14 +142,13 @@ const List = ({ list, onUpdateList, onDeleteList, onDone }) => {
         </Droppable>
         {showAddCardForm ? (
           <>
-          <section className="create-card">
-
-          
-            <CreateCardForm
-              onCardCreate={handleCreateCard}
-              onCancel={() => setShowAddCardForm(false)}
-              listId={list._id}
-            /></section>
+            <section className="create-card">
+              <CreateCardForm
+                onCardCreate={handleCreateCard}
+                onCancel={() => setShowAddCardForm(false)}
+                listId={list._id}
+              />
+            </section>
           </>
         ) : (
           <button

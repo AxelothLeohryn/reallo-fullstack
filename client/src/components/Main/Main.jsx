@@ -1,6 +1,6 @@
 import React from "react";
 import BoardComponent from "./BoardComponent";
-import  Board  from "./Board";
+import Board from "./Board";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 const Main = () => {

@@ -3,15 +3,11 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import PasswordIcon from '@mui/icons-material/Password';
+import PasswordIcon from "@mui/icons-material/Password";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import LoginIcon from "@mui/icons-material/Login";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -41,11 +37,8 @@ const Recover = ({ handleRecover }) => {
 
     try {
       await handleRecover(email);
-      // console.log("Login successful");
-      // Additional logic after successful login (if needed)
     } catch (error) {
       console.error("Recover error:", error);
-      // Handle login errors (e.g., show error message)
     }
   };
   const defaultTheme = createTheme();
@@ -101,11 +94,6 @@ const Recover = ({ handleRecover }) => {
                 autoComplete="email"
                 autoFocus
               />
-              
-              {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
               <Button
                 type="submit"
                 fullWidth
