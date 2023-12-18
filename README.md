@@ -24,7 +24,7 @@ https://reallo-fullstack.onrender.com/
 
 Secure login and registration system using Json Web Token for a personalized user experience. Custom notifications for login, logout and register events using [React Hot Toast](https://github.com/timolins/react-hot-toast).
 
-<img src='./client/src/assets/login.png' width='500'><img src='./client/src/assets/register.png' width='500'>
+ <img src='./client/src/assets/register.png' width='200'> <img src='./client/src/assets/login.png' width='400'>
 
 ### Board Interaction
 
