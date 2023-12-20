@@ -25,7 +25,7 @@ https://reallo-fullstack.onrender.com/
 
 Secure login and registration system using Json Web Token for a personalized user experience. Custom notifications for login, logout and register events using [React Hot Toast](https://github.com/timolins/react-hot-toast).
 
- <img src='./client/src/assets/register.png' width='200'> <img src='./client/src/assets/login.png' width='400'>
+ <img src='./client/src/assets/login.png'>
 
 ### Board Interaction
 
@@ -35,7 +35,7 @@ Users can create multiple boards, each representing a different project or categ
 
 ### Drag-and-Drop Functionality
 
-Secure and user-friendly authentication system for login and registration, using Json Web Token.
+Intuitive drag and drop functionality to move cards through and between lists.
 
 ![DragAndDrop](./client/src/assets/draganddrop.png)
 
