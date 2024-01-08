@@ -1,6 +1,7 @@
 # Reallo: Task and Project Management Web App
 
 [Reallo](https://reallo-fullstack.onrender.com/) is a full-stack application inspired by Trello. Reallo offers a dynamic, user-friendly interface for managing tasks and projects. Built with React, Express, MongoDB, and Node.js.
+Project presentation [here](https://www.canva.com/design/DAF3X13sgTk/IQ_TRG93Xi9Tkexf9WvxPA/view?utm_content=DAF3X13sgTk&utm_campaign=designshare&utm_medium=link&utm_source=editor).
 
 ## Features
 
