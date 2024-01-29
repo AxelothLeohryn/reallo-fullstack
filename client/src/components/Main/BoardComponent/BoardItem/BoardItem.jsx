@@ -28,12 +28,12 @@ const BoardItem = ({ board, onDelete, onEdit }) => {
   return (
     <>
       <article className="board-item" onClick={handleClick}>
-        <h2>{board.name}</h2>
-        <h3>{board.description}</h3>
         <div className="board-item-buttons">
           <EditIcon className="board-item-edit" onClick={handleEdit} />
           <DeleteIcon className="board-item-delete" onClick={handleDelete} />
         </div>
+        <h2>{board.name}</h2>
+        <h3>{board.description}</h3>
       </article>
     </>
   );
