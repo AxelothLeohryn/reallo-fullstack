@@ -1,7 +1,7 @@
 <div align="c">
   <br />
     <a href="https://reallo-fullstack.onrender.com//" target="_blank">
-      <img src="./client/src/assets/cover.png" alt="Project Banner" style="border-radius: 10px;">
+      <img src="./client/src/assets/cover-modified.png" alt="Project Banner" style="border-radius: 10px;">
     </a>
   <br />
   </div>
