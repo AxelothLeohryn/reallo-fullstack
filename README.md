@@ -19,7 +19,7 @@ Project presentation (in spanish) [here](https://www.canva.com/design/DAF3X13sgT
 - **User Authentication**: Secure login and registration system using Json Web Token for a personalized user experience.
 - **Real-Time Data Interaction**: Utilizes Axios for efficient communication with the backend API. All the data is stored and updated in real time using a MongoDB database.
 - **Responsive Design**: Adaptable interface for a consistent experience across different devices.
-- **Confetti!**: Special emoji recognition that triggers a celebratory confetti animation. Try to guess a way to trigger it!
+- **Confetti!🎉**: Special emoji recognition that triggers a celebratory confetti animation. Try to guess a way to trigger it!
 - **Toast Notifications**: Beautiful notifications using [React Hot Toast](https://github.com/timolins/react-hot-toast).
 - **E2E Testing**: Workflow tested using Cypress.
 - **API Documentation**: API endpoints documented using Swagger.
