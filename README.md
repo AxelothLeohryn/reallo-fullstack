@@ -1,3 +1,11 @@
+<div align="c">
+  <br />
+    <a href="https://reallo-fullstack.onrender.com//" target="_blank">
+      <img src="./client/src/assets/cover.png" alt="Project Banner">
+    </a>
+  <br />
+  </div>
+
 # Reallo: Task and Project Management Web App
 
 [Reallo](https://reallo-fullstack.onrender.com/) is a full-stack application inspired by Trello. Reallo offers a dynamic, user-friendly interface for managing tasks and projects. Built with React, Express, MongoDB, and Node.js.
@@ -38,7 +46,8 @@ Users can create multiple boards, each representing a different project or categ
 
 Intuitive drag and drop functionality to move cards through and between lists.
 
-![DragAndDrop](./client/src/assets/draganddrop.png)
+![View](./client/src/assets/view.png)
+![DragAndDrop](./client/src/assets/dnd.png)
 
 ## API Documentation
 
